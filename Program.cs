@@ -73,47 +73,28 @@ namespace ConvertingArabicToRoman
 
             Console.BackgroundColor = ConsoleColor.DarkMagenta;
 
-            Console.WriteLine(" You  will  get 10 random  arabic  numbers  to  convert\n\n\n");
-            Console.WriteLine(" !!!!    P L E A S E    C O N V E R T    A R A B I C  number TO    R O M A N  number     !!!!\n\n");
+            Console.WriteLine(" You  will  get 10 roman  numbers  to  convert");
+            Console.WriteLine(" !!!!    P L E A S E    C O N V E R T    R O M A N  number TO    A R A B I C  number     !!!!\n");
             Console.ResetColor();
-            for (int i = 1; i <= 10; i++)
+
+            List<string> Roman_to_convert = new List<string> { "MMMCMXCIX", "LXXIX", "MMI","MMXLIX", 
+                "MCM", "MMCMI", "DCCCXL","CMXCIX",  "MMMCCCXXXIII", "CXXV"};
+
+            int l = 1;
+            foreach(var it in Roman_to_convert)
             {
-                ushort arabic = (ushort)generator.Next(1, 4000);   //  grandom number generator from 1 to 3999
-                Console.Write(" \n Convert " + arabic + "    into roman number:   ");
+                Console.BackgroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("\n "+ l++ + " / " + Roman_to_convert.Count + "  ");
+                Console.ResetColor(); 
+                
+                Console.Write("  Convert " + it + "    into arabic number:   ");
 
-                string answer = Console.ReadLine(); //  
-                string roman = "";
+                ushort answer = ushort.Parse(Console.ReadLine()) ; //  
 
-                while (arabic >= 1000)
-                    ar_ro(ref arabic, ref roman, 1000, "M");
-                if (arabic >= 900)
-                    ar_ro(ref arabic, ref roman, 900, "CM");
-                if (arabic >= 500)
-                    ar_ro(ref arabic, ref roman, 500, "D");
-                if (arabic >= 400)
-                    ar_ro(ref arabic, ref roman, 400, "CD");
-                while (arabic >= 100)
-                    ar_ro(ref arabic, ref roman, 100, "C");
-                if (arabic >= 90)
-                    ar_ro(ref arabic, ref roman, 90, "XC");
-                if (arabic >= 50)
-                    ar_ro(ref arabic, ref roman, 50, "L");
-                if (arabic >= 40)
-                    ar_ro(ref arabic, ref roman, 40, "XL");
-                while (arabic >= 10)
-                    ar_ro(ref arabic, ref roman, 10, "X");
-                if (arabic == 9)
-                    ar_ro(ref arabic, ref roman, 9, "IX");
-                if (arabic >= 5)
-                    ar_ro(ref arabic, ref roman, 5, "V");
-                if (arabic == 4)
-                    ar_ro(ref arabic, ref roman, 4, "IV");
-                while (arabic >= 1)
-                    ar_ro(ref arabic, ref roman, 1, "I");
 
-                //  LICZBA RZYMSKA  JEST  JUZ  WYZNACZONA
+                ushort arabic = (ro_ar(it));
 
-                if (roman == answer)
+                if (arabic == answer)
                 {
                     Console.BackgroundColor = ConsoleColor.DarkGreen;
                     Console.WriteLine("    !!! CONGRATULATIONS     !!!!!!!");
@@ -122,30 +103,16 @@ namespace ConvertingArabicToRoman
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.BackgroundColor = ConsoleColor.Red;
                     Console.Write("    !!! UNFORTUNATELY   !!!  ");
+                    Console.BackgroundColor = ConsoleColor.DarkCyan;
+                    Console.WriteLine("correct Arabic number: " + arabic);
                     Console.ResetColor();
-                    Console.WriteLine("correct Roman number: " + roman);
                 }
             }
             Console.WriteLine("\n     You scored  " + points + "  points");
 
-            Console.BackgroundColor = ConsoleColor.DarkMagenta;
-            Console.WriteLine(" !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! R Z Y M S K I E    NA   A R A B S K I E    !!!!!!!");
-            Console.ResetColor();
-            string rzym2 = "MMMCMXCIX";
-            Console.WriteLine("LICZBA  RZYMSKA: " + rzym2 + " to liczba arabska = " + ro_ar(rzym2));
-
-            rzym2 = "LXXIX";
-            Console.WriteLine("LICZBA  RZYMSKA: " + rzym2 + " to liczba arabska = " + ro_ar(rzym2));
-
-            rzym2 = "MCM";
-            Console.WriteLine("LICZBA  RZYMSKA: " + rzym2 + " to liczba arabska = " + ro_ar(rzym2));
-
-            rzym2 = "I";
-            Console.WriteLine("LICZBA  RZYMSKA: " + rzym2 + " to liczba arabska = " + ro_ar(rzym2));
-
+            Console.ReadKey();
         }
     }
 }
