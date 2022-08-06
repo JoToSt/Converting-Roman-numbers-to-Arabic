@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConvertingArabicToRoman
+namespace ConvertingRomanToArabic
 {
     
 
@@ -24,40 +24,41 @@ namespace ConvertingArabicToRoman
                 switch (ch)
                 {
                     case 'I':
+                        if 
                         if ((i + 1 < len) && (Roman[i + 1] == 'X')) { Arabic += 9; i++; }
                         else if ((i + 1 < len) && (Roman[i + 1] == 'V')) { Arabic += 4; i++; }
                         else Arabic += 1;
-                    break;
+                        break;
                     case 'V':
                         Arabic += 5;
-                    break;
+                        break;
                     case 'X':
                         if ((i + 1 < len) && (Roman[i + 1] == 'C')) { Arabic += 90; i++; }
                         else if ((i + 1 < len) && (Roman[i + 1] == 'L')) { Arabic += 40; i++; }
                         else Arabic += 10;
-                    break;
+                        break;
                     case 'L':
                         Arabic += 50;
-                    break;
+                        break;
                     case 'C':
                         if ((i + 1 < len) && (Roman[i + 1] == 'M')) { Arabic += 900; i++; }
                         else if ((i + 1 < len) && (Roman[i + 1] == 'D')) { Arabic += 400; i++; }
                         else Arabic += 100;
-                    break;
+                        break;
                     case 'D':
                         Arabic += 500;
-                    break;
+                        break;
                     case 'M':
                         Arabic += 1000;
-                    break;
+                        break;
                     default:
-                        Console.WriteLine("TO nie jest znak liczb rzymskich!!!");
-                    break;
+                        Console.WriteLine("THIS is not a sign of Roman numbers!!!");
+                        break;
                 }
                 i++;
                 if (i < len)
-                    ch = Roman[i];  // sprawdzanie czy nie wyszlismy poza zakres stringu z l. rzymskimi
-            }
+                    ch = Roman[i];  // checking whether we have gone beyond the range of the string of  Roman number
+            }   
             return Arabic;
         }
         static void Main(string[] args)
@@ -68,7 +69,7 @@ namespace ConvertingArabicToRoman
             Console.WriteLine("     C  -   100                        D - 500    ");
             Console.WriteLine("     M  -  1000              ");
             Console.WriteLine("\n ");
-            Random generator = new Random();    //  random number generator
+           
             int points = 0;
 
             Console.BackgroundColor = ConsoleColor.DarkMagenta;
@@ -90,7 +91,6 @@ namespace ConvertingArabicToRoman
                 Console.Write("  Convert " + it + "    into arabic number:   ");
 
                 ushort answer = ushort.Parse(Console.ReadLine()) ; //  
-
 
                 ushort arabic = (ro_ar(it));
 
